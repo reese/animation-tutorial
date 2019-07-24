@@ -4,11 +4,19 @@ import { Animated } from 'react-native'
 import wheelOfFortune from 'assets/images/wheelOfFortune.png'
 import { styles } from './styles'
 
-export class Wheel extends Component {
+interface Props {
+  rotationAngle: Animated.AnimatedInterpolation
+}
+
+export class Wheel extends Component<Props> {
   public render() {
+    const { rotationAngle } = this.props
     return (
       <Animated.Image
-        style={styles.wheel}
+        style={{
+          ...styles.wheel,
+          transform: [{ rotate: rotationAngle }]
+        }}
         source={wheelOfFortune}
       />
     )
